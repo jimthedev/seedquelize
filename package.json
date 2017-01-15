@@ -28,7 +28,8 @@
   },
   "files": [
     "src/*.js",
-    "!src/*-spec.js"
+    "!src/*-spec.js",
+    "!examples/*"
   ],
   "homepage": "https://github.com/jimthedev/seedquelize#readme",
   "keywords": [

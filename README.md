@@ -28,12 +28,16 @@ npm install seedquelize --save-dev
 
 ### Usage
 
-This example uses the following npm modules which you will have to install on your own:  `dotenv-safe`, `express`, `body-parser`, `sequelize` and `seedquelize` to start up an express app with seed data when not in production. Your database config info should be in a .env file. I've commented this file as much as possible to show how to use seeding in an actual app. Pull requests are welcome in order to make this more clear.
+This example shows how to use seedquelize with express sequelize and postgres.  It uses the following npm modules which you will have to install on your own:  `express`, `body-parser`, `sequelize` and `pg` as dependencies and `seedquelize` and `dotenv-safe` as dev dependencies.  You will need to npm install all of those dependencies for this example to work. You can also check out the examples directory.
+
+Your database config info should be in a .env file. I've commented this file as much as possible to show how to use seeding in an actual app. Pull requests are welcome in order to make this more clear.
 
 ```js
+let seed;
+
 if(process.env.NODE_ENV !== 'production') {
   require('dotenv-safe').config() // environment variables, used for hiding secrets
-  const seed = require('seedquelize')
+  seed = require('seedquelize')
 }
 
 const express = require('express')
@@ -52,7 +56,7 @@ const Artist = sequelize.define('artist', {
     type: Sequelize.STRING,
     field: 'genre'
   }
-}
+})
 
 const User = sequelize.define('user', {
   username: {
@@ -63,7 +67,7 @@ const User = sequelize.define('user', {
     type: Sequelize.STRING,
     field: 'twitter'
   }
-}
+})
 
 // This line saves your job by not deleting production data
 if(process.env.NODE_ENV !== 'production') {
